@@ -1,0 +1,92 @@
+$white: #fff !default;
+$black: #1a1302 !default;
+$gray: #77787b !default;
+$gray-300: #a8a9ad !default;
+$gray-100: #fffefb !default;
+$red: #e50123 !default;
+$blue: rgb(54, 54, 214) !default;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Source Code Pro', monospace;
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
+@media (max-width: 1080px) {
+  html {
+    font-size: 93.75%; // 15px
+  }
+}
+
+@media (max-width: 720px) {
+  html {
+    font-size: 87.5%; //14px
+  }
+}
+
+body {
+  background: $gray-100;
+  color: $black;
+  height: 100vh;
+  width: 100vw;
+}
+
+body,
+input,
+textarea,
+select,
+button {
+  font: 400 1rem 'Source Sans Pro', sans-serif;
+}
+
+button {
+  display: inline-block;
+  width: 200px;
+  height: 45px;
+  padding: 10px 15px;
+  cursor: pointer;
+  border-radius: 8px;
+  background-color: $blue;
+  border: none;
+  color: $white;
+  transition: filter 0.3s;
+  font-size: 18px;
+  text-align: center;
+
+  &:hover {
+    filter: brightness(0.9);
+  }
+
+  &:disabled {
+    cursor: not-allowed !important;
+    background-color: $gray-300 !important;
+    border-color: $gray-300 !important;
+    color: $black !important;
+  }
+}
+
+
+::-webkit-scrollbar {
+  width: 10px;
+  border-radius: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+  border-radius: 8px;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: $gray; 
+  border-radius: 8px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+  border-radius: 8px;
+}
