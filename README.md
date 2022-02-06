@@ -41,7 +41,7 @@ After all these steps, the user can generate the line chart with the data entere
 $ git clone 
 
 # Access the project folder and install dependencies
-$ cd plotting-chart-reactjs/
+$ cd plotting-charts-with-editorCode-reactjs/
 $ npm i
 
 # Run the application
