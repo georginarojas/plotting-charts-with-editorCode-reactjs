@@ -5,8 +5,14 @@
   <a href="#-technologies">Technologies</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;  
   <a href="#-features">Features</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; 
 </p>
-
-<img src="./assets/view.png" align="center"/>
+<br/>
+<br/>
+<br/>
+<p align="center">
+  <img src="./asset/chart.gif"/>
+</p>
+<br/>
+<br/>
 
 ## About
 This challenge plots line graphs of manually entered data. Through a code editor, the user can enter the values, and the App processes these values and plots it on a graph.<br/>
