@@ -1,26 +1,22 @@
 /* eslint-disable @typescript-eslint/restrict-template-expressions */
 import React, { useState } from 'react'
 import jsonic from 'jsonic'
-import { mockSeries } from '@/presentation/utils'
+import { mockSeries, sample } from '@/presentation/utils'
 import { Chart, CodeEditor, Footer } from '@/presentation/components'
-import {
-  useDataFormattingToPlot,
-  useGroupBy,
-  useHandleData,
-  useSelectDataByInterval
-} from '@/presentation/hooks'
+import { useCreateSeries, useHandleEvents } from '@/presentation/hooks'
 import Styles from './styles.scss'
 
 const Home: React.FC = () => {
-  const [dataFormatted, setDataFormatted] = useState(mockSeries)
-  const [rawCode, setRawCode] = useState<string>()
+  const [series, setSeries] = useState(mockSeries)
+  const [rawCode, setRawCode] = useState<string>(sample)
   const [dataCode, setDataCode] = useState([])
   const dataCodeAux = dataCode
   const MAX_VALUE = 50
+  const { dataToEvents, trimEvents } = useHandleEvents()
+  const { groupByCategory, seriesFormatting } = useCreateSeries()
 
   const handleChange = (value: any) => {
     setRawCode(value)
-    console.log('!!!!!!!!! ', value)
   }
 
   const handleDataFromEditor = async (event) => {
@@ -46,40 +42,42 @@ const Home: React.FC = () => {
       return
     }
     setDataCode(dataCodeAux)
-    const { dataType, startData, spanData, stopData } = useHandleData(dataCodeAux)
-    console.log(dataType, startData, spanData, stopData)
-    handleGeneratePlotting(spanData, startData, dataType)
+    const { eventData, eventStart, eventSpan } = dataToEvents(dataCodeAux)
+    handleGeneratePlotting(eventSpan, eventStart, eventData)
   }
 
-  const handleGeneratePlotting = (span, start, data) => {
-    if (!start) {
+  const handleGeneratePlotting = (eventSpan, eventStart, eventData) => {
+    if (!eventStart) {
       alert('Please, insert data START type')
       return
     }
-    if (!data || data.length === 0) {
+    if (!eventData || eventData.length === 0) {
       alert('No DATA type to plot')
       return
     }
 
-    let dataChunk = data
-    if (span) {
-      dataChunk = useSelectDataByInterval({
-        initial: span.begin,
-        end: span.end,
-        data
+    let dataChunk = eventData
+    if (eventSpan) {
+      dataChunk = trimEvents({
+        initial: eventSpan.begin,
+        end: eventSpan.end,
+        events: eventData
       })
     }
     if (dataChunk.length === 0) {
-      alert(`No data on interval [${span.begin} - ${span.end}]`)
+      alert(`No data on interval [${eventSpan.begin} - ${eventSpan.end}]`)
       return
     }
-    const grouped = useGroupBy({ dataChunk, groups: start.group })
-
-    const dataFormatting = useDataFormattingToPlot({
-      data: grouped,
-      labels: start.select
+    const grouped = groupByCategory({
+      dataChunk,
+      categories: eventStart.group
     })
-    setDataFormatted(dataFormatting)
+
+    const eventFormatted = seriesFormatting({
+      data: grouped,
+      labels: eventStart.select
+    })
+    setSeries(eventFormatted)
   }
 
   return (
@@ -89,7 +87,7 @@ const Home: React.FC = () => {
       </header>
 
       <div className={Styles.chart}>
-        <Chart series={dataFormatted} />
+        <Chart series={series} />
       </div>
       <Footer handleDataFromEditor={handleDataFromEditor} />
     </>
