@@ -34,6 +34,7 @@ const Home: React.FC = () => {
     try {
       entries.forEach((entry) => {
         const entryObj = entry.trim()
+        // parse a string into a JavaScript object
         dataCodeAux.push(jsonic(entryObj))
       })
     } catch (error) {

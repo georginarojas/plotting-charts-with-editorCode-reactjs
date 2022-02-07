@@ -12,6 +12,9 @@ type SeriesFormattingProps = {
 }
 
 export const useCreateSeries = () => {
+  /*
+  groupByCategory function groups data according to category
+  */
   const groupByCategory = ({ dataChunk, categories }: GroupByCategoryProps): any => {
     const getKey = (item, categories: string[]) => {
       let key = ''
@@ -29,8 +32,11 @@ export const useCreateSeries = () => {
 
     return grouped
   }
-
-  const seriesFormatting = ({ data, labels }: SeriesFormattingProps): any[] => {
+  /*
+  seriesFormatting function, formats the grouped data according to the "Series" model
+  for plotting on the line chart
+  */
+  const seriesFormatting = ({ data, labels }: SeriesFormattingProps): Series[] => {
     const seriesTemp: any = []
     const series: Series[] = []
 

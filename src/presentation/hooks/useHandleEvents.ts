@@ -5,6 +5,10 @@ interface EventIntervalProps {
 }
 
 export const useHandleEvents = () => {
+  /*
+  dataToEvents function returns events by categories (start, end, data, span),
+  according to the established business rules.
+  */
   const dataToEvents = (dataCode: any[]): any => {
     let eventStart = null
     let eventSpan = null
@@ -44,21 +48,19 @@ export const useHandleEvents = () => {
 
     return { eventData, eventStart, eventSpan, eventStop }
   }
-
+  /*
+  trimEvents function returns events within the given range
+  */
   const trimEvents = ({ initial, end, events }: EventIntervalProps): any => {
     let selectedEvents = events
 
     if (!end && !initial) {
       return selectedEvents
     } else if (!end) {
-      selectedEvents = events.filter(
-        (d) => d.timestamp >= initial
-      )
+      selectedEvents = events.filter((d) => d.timestamp >= initial)
       return selectedEvents
     } else if (!initial) {
-      selectedEvents = events.filter(
-        (d) => d.timestamp <= end
-      )
+      selectedEvents = events.filter((d) => d.timestamp <= end)
       return selectedEvents
     }
 
