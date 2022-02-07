@@ -10,13 +10,17 @@
 
 ## About
 This challenge plots line graphs of manually entered data. Through a code editor, the user can enter the values, and the App processes these values and plots it on a graph.<br/>
+During the implementation, concepts such as: SOLID, dependency injection and clean architecture were considered.
+A MAX_VALUE constant was also defined, in order to limit or maximum data to be processed.
+Another point considered was to notify the user in case of inconsistency of the data provided.<br/>
+<br/>
 There are 4 types of data:<br/>
 - "start": initial data, the user defines groups and parameters for the App to create the Series.<br/>
 - "data': enter all values of groups and parameters.<br/>
 - "span": insert interval (time) for plotting data.<br/>
 - "stop": ignore the follows data until get a data "start" type <br/>
 
-After all these steps, the user can generate the line chart with the data entered.<br/>
+After insert the values, the user can generate the line chart with the data provided.<br/>
 
 
 ## 🛠 Technologies
