@@ -20,12 +20,11 @@ const CodeEditor: React.FC<Props> = ({ rawCode, handleChange }) => {
       name="UNIQUE_ID_OF_DIV"
       editorProps={{ $blockScrolling: true }}
       setOptions={{
-        // tabSize: 2,
         showLineNumbers: true
       }}
       style={{
         width: '100%',
-        height: '200px'
+        height: '250px'
       }}
       fontSize={16}
     />

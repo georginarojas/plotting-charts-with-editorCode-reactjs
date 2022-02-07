@@ -17,7 +17,7 @@ type Props = {
 
 const Chart: React.FC<Props> = ({ series }: Props) => {
   return (
-    <LineChart width={1150} height={400}>
+    <LineChart width={1250} height={380} margin={{ left: 350 }}>
       <CartesianGrid strokeDasharray="3 3" />
       {series.length > 0 && (
         <>
