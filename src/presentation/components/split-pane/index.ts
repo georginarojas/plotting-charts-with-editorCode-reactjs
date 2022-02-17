@@ -1,0 +1,6 @@
+export { default as Divider } from './divider'
+export { default as SplitPaneBottom } from './split-pane-bottom'
+export { default as SplitPaneTop } from './split-pane-top'
+export { default as SplitPaneLeft } from './split-pane-left'
+export { default as SplitPaneRight } from './split-pane-right'
+export { default as SplitPaneProvider } from './split-pane'

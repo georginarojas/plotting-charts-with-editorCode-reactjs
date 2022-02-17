@@ -5,6 +5,12 @@ import { mockSeries, sample } from '@/presentation/utils'
 import { Chart, CodeEditor, Footer } from '@/presentation/components'
 import { useCreateSeries, useHandleEvents } from '@/presentation/hooks'
 import Styles from './styles.scss'
+import {
+  Divider,
+  SplitPaneBottom,
+  SplitPaneProvider,
+  SplitPaneTop
+} from '@/presentation/components/split-pane'
 
 const Home: React.FC = () => {
   const [series, setSeries] = useState(mockSeries)
@@ -83,13 +89,19 @@ const Home: React.FC = () => {
 
   return (
     <>
-      <header>
-        <CodeEditor rawCode={rawCode} handleChange={handleChange} />
-      </header>
-
-      <div className={Styles.chart}>
-        <Chart series={series} />
-      </div>
+      <SplitPaneProvider className="split-pane-col">
+        <SplitPaneTop>
+          <header>
+            <CodeEditor rawCode={rawCode} handleChange={handleChange} />
+          </header>
+        </SplitPaneTop>
+        <Divider className="separator-row" />
+        <SplitPaneBottom>
+          <div className={Styles.chart}>
+            <Chart series={series} />
+          </div>
+        </SplitPaneBottom>
+      </SplitPaneProvider>
       <Footer handleDataFromEditor={handleDataFromEditor} />
     </>
   )
