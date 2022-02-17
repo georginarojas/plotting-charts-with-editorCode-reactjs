@@ -5,15 +5,8 @@ type Props = {
   children: React.ReactNode
 }
 
-const SplitPaneBottom: React.FC<Props & React.HTMLAttributes<HTMLElement>> = (
-  { children }: Props,
-  ...props
-) => {
-  return (
-    <div {...props} className={Styles['split-pane-bottom']}>
-      {children}
-    </div>
-  )
+const SplitPaneBottom: React.FC<Props> = ({ children }: Props) => {
+  return <div className={Styles['split-pane-bottom']}>{children}</div>
 }
 
 export default SplitPaneBottom

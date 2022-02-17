@@ -7,10 +7,7 @@ type Props = {
   children: React.ReactNode
 }
 
-const SplitPaneTop: React.FC<Props & React.HTMLAttributes<HTMLElement>> = (
-  { children }: Props,
-  ...props
-) => {
+const SplitPaneTop: React.FC<Props> = ({ children }: Props) => {
   const topRef = createRef() as any
   const { clientHeight, setClientHeight } = useContext(SplitPaneContext)
 
@@ -24,7 +21,7 @@ const SplitPaneTop: React.FC<Props & React.HTMLAttributes<HTMLElement>> = (
   }, [clientHeight])
 
   return (
-    <div {...props} className={Styles['split-pane-top']} ref={topRef}>
+    <div className={Styles['split-pane-top']} ref={topRef}>
       {children}
     </div>
   )

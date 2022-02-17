@@ -3,11 +3,14 @@ import React, { useContext } from 'react'
 import { SplitPaneContext } from '@/presentation/context/split-pane-context'
 import Styles from './split-pane.scss'
 
-const Divider: React.FC<React.HTMLAttributes<HTMLElement>> = (...props) => {
+type Props = {
+  nameClass: string
+}
+
+const Divider: React.FC<Props> = ({ nameClass }: Props) => {
   const { onMouseHoldDown } = useContext(SplitPaneContext)
-  console.log('Divider ', props)
   return (
-        <div {...props} className={Styles[props[0].className]} onMouseDown={onMouseHoldDown} ></div>
+    <div className={Styles[nameClass]} onMouseDown={onMouseHoldDown}></div>
   )
 }
 

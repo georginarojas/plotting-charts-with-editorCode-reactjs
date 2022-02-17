@@ -5,15 +5,8 @@ type Props = {
   children: React.ReactNode
 }
 
-const SplitPaneRight: React.FC<Props & React.HTMLAttributes<HTMLElement>> = (
-  { children }: Props,
-  ...props
-) => {
-  return (
-    <div {...props} className={Styles['split-pane-right']}>
-      {children}
-    </div>
-  )
+const SplitPaneRight: React.FC<Props> = ({ children }: Props) => {
+  return <div className={Styles['split-pane-right']}>{children}</div>
 }
 
 export default SplitPaneRight

@@ -6,13 +6,13 @@ import Styles from './split-pane.scss'
 
 type Props = {
   children: React.ReactNode
+  nameClass: string
 }
 
-const SplitPaneProvider: React.FC<Props & React.HTMLAttributes<HTMLElement>> = (
-  { children }: Props,
-  ...props
-): any => {
-  console.log('PROPS ', props)
+const SplitPaneProvider: React.FC<Props> = ({
+  children,
+  nameClass
+}: Props): any => {
   const [clientHeight, setClientHeight] = useState(null)
   const [clientWidth, setClientWidth] = useState(null)
   const yDividerPos = useRef(null)
@@ -47,8 +47,8 @@ const SplitPaneProvider: React.FC<Props & React.HTMLAttributes<HTMLElement>> = (
     }
   })
   return (
-    <div {...props} className={Styles['split-pane-col']}>
-    {/* <div {...props} className={Styles[props[0].className]}> */}
+    <div className={Styles[nameClass]}>
+      {/* <div {...props} className={Styles[props[0].className]}> */}
       <SplitPaneContext.Provider
         value={{
           clientHeight,

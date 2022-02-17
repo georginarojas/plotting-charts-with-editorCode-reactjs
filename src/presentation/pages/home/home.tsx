@@ -89,13 +89,11 @@ const Home: React.FC = () => {
 
   return (
     <>
-      <SplitPaneProvider className="split-pane-col">
+      <SplitPaneProvider nameClass="split-pane-col">
         <SplitPaneTop>
-          <header>
-            <CodeEditor rawCode={rawCode} handleChange={handleChange} />
-          </header>
+          <CodeEditor rawCode={rawCode} handleChange={handleChange} />
         </SplitPaneTop>
-        <Divider className="separator-row" />
+        <Divider nameClass="separator-row" />
         <SplitPaneBottom>
           <div className={Styles.chart}>
             <Chart series={series} />

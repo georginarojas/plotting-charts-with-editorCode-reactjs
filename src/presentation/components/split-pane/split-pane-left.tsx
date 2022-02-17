@@ -7,10 +7,7 @@ type Props = {
   children: React.ReactNode
 }
 
-const SplitPaneLeft: React.FC<Props & React.HTMLAttributes<HTMLElement>> = (
-  { children }: Props,
-  props
-) => {
+const SplitPaneLeft: React.FC<Props> = ({ children }: Props) => {
   const leftRef = createRef() as any
   const { clientWidth, setClientWidth } = useContext(SplitPaneContext)
 
@@ -24,7 +21,7 @@ const SplitPaneLeft: React.FC<Props & React.HTMLAttributes<HTMLElement>> = (
   }, [clientWidth])
 
   return (
-    <div {...props} className={Styles['split-pane-left']} ref={leftRef}>
+    <div className={Styles['split-pane-left']} ref={leftRef}>
       {children}
     </div>
   )
