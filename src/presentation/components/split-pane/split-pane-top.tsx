@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/restrict-plus-operands */
 import { SplitPaneContext } from '@/presentation/context/split-pane-context'
 import React, { createRef, useContext, useEffect } from 'react'
-import './split-pane.scss'
+import Styles from './split-pane.scss'
 
 type Props = {
   children: React.ReactNode
@@ -24,7 +24,7 @@ const SplitPaneTop: React.FC<Props & React.HTMLAttributes<HTMLElement>> = (
   }, [clientHeight])
 
   return (
-    <div {...props} className="split-pane-top" ref={topRef}>
+    <div {...props} className={Styles['split-pane-top']} ref={topRef}>
       {children}
     </div>
   )
