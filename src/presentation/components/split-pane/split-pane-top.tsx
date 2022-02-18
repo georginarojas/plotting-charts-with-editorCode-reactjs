@@ -13,7 +13,7 @@ const SplitPaneTop: React.FC<Props> = ({ children }: Props) => {
 
   useEffect(() => {
     if (!clientHeight) {
-      setClientHeight(topRef.current.clientHeight)
+      setClientHeight(topRef.current.clientHeight / 2)
       return
     }
     topRef.current.style.minHeight = clientHeight + 'px'

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import {
   LineChart,
   Line,
@@ -10,14 +10,17 @@ import {
 } from 'recharts'
 import { format } from 'date-fns'
 import { Series } from '@/domain/models'
+import { SplitPaneContext } from '@/presentation/context/split-pane-context'
 
 type Props = {
   series: Series[]
 }
 
 const Chart: React.FC<Props> = ({ series }: Props) => {
+  const { clientHeight } = useContext(SplitPaneContext)
+  const heightRef: number = (600 - clientHeight) >= 200 ? (600 - clientHeight) : 380
   return (
-    <LineChart width={1250} height={380} margin={{ left: 350 }}>
+    <LineChart width={1250} height={heightRef} margin={{ left: 350 }}>
       <CartesianGrid strokeDasharray="3 3" />
       {series.length > 0 && (
         <>

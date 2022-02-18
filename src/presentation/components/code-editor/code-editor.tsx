@@ -1,5 +1,7 @@
-import React from 'react'
+/* eslint-disable @typescript-eslint/restrict-plus-operands */
+import React, { useContext } from 'react'
 import AceEditor from 'react-ace'
+import { SplitPaneContext } from '@/presentation/context/split-pane-context'
 import 'ace-builds/src-noconflict/mode-javascript'
 import 'ace-builds/src-noconflict/theme-monokai'
 
@@ -9,6 +11,8 @@ type Props = {
 }
 
 const CodeEditor: React.FC<Props> = ({ rawCode, handleChange }) => {
+  const { clientHeight } = useContext(SplitPaneContext)
+  const heightRef: string = clientHeight ? clientHeight + 'px' : '250px'
   return (
     <AceEditor
       mode="javascript"
@@ -24,7 +28,7 @@ const CodeEditor: React.FC<Props> = ({ rawCode, handleChange }) => {
       }}
       style={{
         width: '100%',
-        height: '250px'
+        height: heightRef
       }}
       fontSize={16}
     />
