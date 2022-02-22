@@ -30,11 +30,22 @@ const SplitPaneProvider: React.FC<Props> = ({
     if (!yDividerPos.current && !xDividerPos.current) {
       return
     }
-    setClientHeight(clientHeight + e.clientY - yDividerPos.current)
     setClientWidth(clientWidth + e.clientX - xDividerPos.current)
-
-    yDividerPos.current = e.clientY
     xDividerPos.current = e.clientX
+
+    if (yDividerPos.current >= window.innerHeight - 84) {
+      setClientHeight(window.innerHeight - 84)
+      yDividerPos.current = e.clientY
+      return
+    }
+
+    if (yDividerPos.current <= 0) {
+      setClientHeight(0)
+      yDividerPos.current = 0
+      return
+    }
+    setClientHeight(clientHeight + e.clientY - yDividerPos.current)
+    yDividerPos.current = e.clientY
   }
 
   useEffect(() => {
@@ -48,7 +59,6 @@ const SplitPaneProvider: React.FC<Props> = ({
   })
   return (
     <div className={Styles[nameClass]}>
-      {/* <div {...props} className={Styles[props[0].className]}> */}
       <SplitPaneContext.Provider
         value={{
           clientHeight,
